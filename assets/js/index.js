@@ -48,6 +48,16 @@ function generateTable() {
   table.appendChild(trTitles)
 
   // TODO bucle para rellenar la tabla a partir del array data del fichero data.js
+  let tdTitle, tdServiceDesktop
+  [tdTitle, tdServiceDesktop] = createElements('td', 2)
+
+  for (let i = 0; i < data.length; i++) {
+
+    tdTitle.textContent = data[i].title
+    tdServiceDesktop.textContent = data[i].service ? 'X' : ''
+    tdServiceMobile.textContent = data[i].service ? 'Servicio' : ''
+
+  }
   
   document.getElementById('containerTable').appendChild(table)
 
