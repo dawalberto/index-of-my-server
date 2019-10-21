@@ -1,5 +1,5 @@
 let titleRecursos = document.getElementById('titleRecursos')
-let containerTable = document.getElementById('containerTable')
+let containerTableRecursos = document.getElementById('containerTableRecursos')
 
 generateTableRecursos();
 
@@ -85,7 +85,7 @@ function generateTableRecursos() {
 
   }
   
-  containerTable.appendChild(table)
+  containerTableRecursos.appendChild(table)
 
 }
 
@@ -93,10 +93,10 @@ titleRecursos.addEventListener('click', () => {
 
   if (titleRecursos.textContent === '👇 Recursos') {
     titleRecursos.textContent = '👉Recursos'
-    containerTable.style.display = 'none'
+    containerTableRecursos.style.display = 'none'
   } else {
     titleRecursos.textContent = '👇 Recursos'
-    containerTable.style.display = 'initial'
+    containerTableRecursos.style.display = 'initial'
   }
 
 })
