@@ -1835,7 +1835,7 @@ mark.tag {
 
 progress {
   display: block;
-  vertical-align: baseline;
+  /* vertical-align: baseline; */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

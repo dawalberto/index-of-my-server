@@ -1,3 +1,5 @@
+generateTable();
+
 function createElements(type, numElements) {
 
   let elements = []
@@ -48,14 +50,29 @@ function generateTable() {
   table.appendChild(trTitles)
 
   // TODO bucle para rellenar la tabla a partir del array data del fichero data.js
-  let tdTitle, tdServiceDesktop
-  [tdTitle, tdServiceDesktop] = createElements('td', 2)
 
   for (let i = 0; i < data.length; i++) {
 
+    let tr = document.createElement('tr')
+    let [tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto, tdUrl] = createElements('td', 6)
+
     tdTitle.textContent = data[i].title
     tdServiceDesktop.textContent = data[i].service ? 'X' : ''
-    tdServiceMobile.textContent = data[i].service ? 'Servicio' : ''
+    tdPaginaDesktop.textContent = !data[i].service ? 'X' : ''
+    tdServiceOrPageMobile.textContent = data[i].service ? 'Servicio' : 'Página'
+    tdPuerto.textContent = data[i].service ? data[i].port : '-'
+    let aUrl = document.createElement('a')
+    aUrl.href = data[i].url
+    aUrl.target = '_blank'
+    aUrl.textContent = data[i].url
+
+    addClassToElements([tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto], 't-align')
+    addClassToElements([tdServiceDesktop, tdPaginaDesktop], 'show-in-desktop')
+    tdServiceOrPageMobile.classList.add('show-in-mobile')
+
+    tdUrl.appendChild(aUrl)
+    appendChilds(tr, [tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto, tdUrl])
+    table.appendChild(tr)
 
   }
   
