@@ -1,4 +1,4 @@
-generateTable();
+generateTableRecursos();
 
 function createElements(type, numElements) {
 
@@ -36,20 +36,24 @@ function addClassToElements(elements, classString) {
 
 }
 
-function generateTable() {
+function generateTableRecursos() {
 
   let table = document.createElement('table')
+  let thead = document.createElement('thead')
+  let tbody = document.createElement('tbody')
   let trTitles = document.createElement('tr')
   let thTitles = [thTitle1, thTitle2, thTitle3, thTitle4, thTitle5] = createElements('th', 5)
   let thTitleValues = ['Título', 'Servicio', 'Página', 'Puerto', 'Enlace']
+
+  let caption = document.createElement('caption')
+  caption.textContent = 'Recursos'
 
   addClassToElements(thTitles, 't-align')
   addClassToElements(thTitles, 'title-table')
   assignValuesToElements(thTitles, thTitleValues)
   appendChilds(trTitles, thTitles)
-  table.appendChild(trTitles)
-
-  // TODO bucle para rellenar la tabla a partir del array data del fichero data.js
+  thead.appendChild(trTitles)
+  appendChilds(table, [caption, thead])
 
   for (let i = 0; i < data.length; i++) {
 
@@ -72,7 +76,8 @@ function generateTable() {
 
     tdUrl.appendChild(aUrl)
     appendChilds(tr, [tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto, tdUrl])
-    table.appendChild(tr)
+    tbody.appendChild(tr)
+    table.appendChild(tbody)
 
   }
   
