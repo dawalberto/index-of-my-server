@@ -100,3 +100,11 @@ titleRecursos.addEventListener('click', () => {
   }
 
 })
+
+async function getProfile() {
+
+  let profile = await getProfileGithub('dawalberto')
+  console.log(profile)
+  console.log('hola')
+
+}

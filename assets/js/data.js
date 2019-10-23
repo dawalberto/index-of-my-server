@@ -15,3 +15,12 @@ const total = data.length
 const pages = data.filter(item => !item.service)
 
 const services = data.filter(item => item.service)
+
+async function getProfileGithub(profile) {
+
+  let response = await fetch(`https://api.github.com/users/${profile}`)
+  let data = await response.json()
+  return data
+  
+}
+
