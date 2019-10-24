@@ -103,16 +103,12 @@ titleRecursos.addEventListener('click', () => {
 
 async function getProfileGithubFromMyResources(profile) {
 
-  getProfileGithub(profile)
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
+  return await getProfileGithub(profile)
 
 }
 
 async function getReposGithubFromMyResources(profile) {
 
-  getReposGithub(profile)
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
+  return await getReposGithub(profile)
 
 }
