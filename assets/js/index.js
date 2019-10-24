@@ -101,14 +101,16 @@ titleRecursos.addEventListener('click', () => {
 
 })
 
-async function getProfileGithubFromMyResources(profile) {
+async function lastRepoGithubPushed() {
 
-  return await getProfileGithub(profile)
+  let repos = await getReposGithub('dawalberto')
 
-}
+  let reposOrdered = repos.sort((repoa, repob) => {
+    return new Date(repob.pushed_at) - new Date(repoa.pushed_at)
+  })
 
-async function getReposGithubFromMyResources(profile) {
-
-  return await getReposGithub(profile)
+  return reposOrdered[0]
+  // dates = reposOrdered.map(repo => [repo.pushed_at, repo.name])
+  // console.log(dates)
 
 }
