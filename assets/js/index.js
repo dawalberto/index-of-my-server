@@ -50,7 +50,7 @@ function generateTableRecursos() {
   let thTitleValues = ['Título', 'Servicio', 'Página', 'Puerto', 'Enlace']
 
   let caption = document.createElement('caption')
-  caption.textContent = 'Recursos'
+  caption.textContent = `${totalMyResources} recursos`
 
   addClassToElements(thTitles, 't-align')
   addClassToElements(thTitles, 'title-table')
@@ -59,20 +59,20 @@ function generateTableRecursos() {
   thead.appendChild(trTitles)
   appendChilds(table, [caption, thead])
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < myResources.length; i++) {
 
     let tr = document.createElement('tr')
     let [tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto, tdUrl] = createElements('td', 6)
 
-    tdTitle.textContent = data[i].title
-    tdServiceDesktop.textContent = data[i].service ? 'X' : ''
-    tdPaginaDesktop.textContent = !data[i].service ? 'X' : ''
-    tdServiceOrPageMobile.textContent = data[i].service ? 'Servicio' : 'Página'
-    tdPuerto.textContent = data[i].service ? data[i].port : '-'
+    tdTitle.textContent = myResources[i].title
+    tdServiceDesktop.textContent = myResources[i].service ? 'X' : ''
+    tdPaginaDesktop.textContent = !myResources[i].service ? 'X' : ''
+    tdServiceOrPageMobile.textContent = myResources[i].service ? 'Servicio' : 'Página'
+    tdPuerto.textContent = myResources[i].service ? myResources[i].port : '-'
     let aUrl = document.createElement('a')
-    aUrl.href = data[i].url
+    aUrl.href = myResources[i].url
     aUrl.target = '_blank'
-    aUrl.textContent = data[i].url
+    aUrl.textContent = myResources[i].url
 
     addClassToElements([tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto], 't-align')
     addClassToElements([tdServiceDesktop, tdPaginaDesktop], 'show-in-desktop')
@@ -101,10 +101,18 @@ titleRecursos.addEventListener('click', () => {
 
 })
 
-async function getProfile() {
+async function getProfileGithubFromMyResources(profile) {
 
-  let profile = await getProfileGithub('dawalberto')
-  console.log(profile)
-  console.log('hola')
+  getProfileGithub(profile)
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+
+}
+
+async function getReposGithubFromMyResources(profile) {
+
+  getReposGithub(profile)
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
 
 }
