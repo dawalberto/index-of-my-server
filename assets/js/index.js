@@ -1,6 +1,7 @@
 let titleRecursos = document.getElementById('titleRecursos')
-let containerTableRecursos = document.getElementById('containerTableRecursos')
+let titles = document.getElementsByClassName('title')
 
+addEventToTitles(titles)
 generateTableRecursos();
 
 
@@ -89,17 +90,32 @@ function generateTableRecursos() {
 
 }
 
-titleRecursos.addEventListener('click', () => {
+function addEventToTitles(elements) {
 
-  if (titleRecursos.textContent === '👇 Recursos') {
-    titleRecursos.textContent = '👉Recursos'
-    containerTableRecursos.style.display = 'none'
-  } else {
-    titleRecursos.textContent = '👇 Recursos'
-    containerTableRecursos.style.display = 'initial'
+  let arrayElements = Array.from(elements)
+  for (let i = 0; i < arrayElements.length; i++) {
+    elements[i].addEventListener('click', () => {
+
+      let container = elements[i].nextElementSibling //Si la sección del títutlo no está justo a continuación esto no funcionará
+      let title = elements[i].innerHTML.slice(2, elements[i].innerHTML.length).trim()
+      showAndHiddenSections(elements[i], title, container)
+
+    })
   }
 
-})
+}
+
+function showAndHiddenSections(element, title, container) {
+
+  if (element.textContent === `👇 ${title}`) {
+    element.textContent = `👉${title}`
+    container.style.display = 'none'
+  } else {
+    element.textContent = `👇 ${title}`
+    container.style.display = 'initial'
+  }
+
+}
 
 async function lastRepoGithubPushed() {
 
@@ -112,5 +128,18 @@ async function lastRepoGithubPushed() {
   return reposOrdered[0]
   // dates = reposOrdered.map(repo => [repo.pushed_at, repo.name])
   // console.log(dates)
+
+}
+
+function printLastRepoPushed() {
+
+  let repo = lastRepoGithubPushed()
+  let container = document.getElementById('lastRepoPushed')
+  let h3 = document.createElement('h3')
+  let divDescription = document.createElement('div')
+  [pDescription, pUrl, pTecnos] = createElements('p', 3)
+
+  divDescription.classList.add('section')
+  divDescription.classList.add('double-padded')
 
 }
