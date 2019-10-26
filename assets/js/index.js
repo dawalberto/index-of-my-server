@@ -152,7 +152,9 @@ async function printLastRepoPushed() {
   repoTechnologies = JSON.parse(repoTechnologies)
 
   for (let i = 0; i < repoTechnologies.length; i++) {
-    pTecnos.innerHTML += icons[i].technologie === repoTechnologies[i] ? icons[i].icon : ''
+    let icon = icons.filter(icon => icon.technologie === repoTechnologies[i])
+    if (icon.length > 0)
+      pTecnos.innerHTML += icon[0].icon
   }
 
   assignValuesToElements([h3, pDescription, aUrl], [repo.name, repoDescription, '👁 Ver en GitHub'])
