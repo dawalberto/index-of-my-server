@@ -2,7 +2,8 @@ let titleRecursos = document.getElementById('titleRecursos')
 let titles = document.getElementsByClassName('title')
 
 addEventToTitles(titles)
-generateTableRecursos();
+generateTableRecursos()
+printLastRepoPushed()
 
 
 function createElements(type, numElements) {
@@ -131,15 +132,26 @@ async function lastRepoGithubPushed() {
 
 }
 
-function printLastRepoPushed() {
+async function printLastRepoPushed() {
 
-  let repo = lastRepoGithubPushed()
+  let repo = await lastRepoGithubPushed()
+
   let container = document.getElementById('lastRepoPushed')
   let h3 = document.createElement('h3')
   let divDescription = document.createElement('div')
-  [pDescription, pUrl, pTecnos] = createElements('p', 3)
+  let aUrl = document.createElement('a')
+  let [pDescription, pUrl, pTecnos] = createElements('p', 3)
 
   divDescription.classList.add('section')
   divDescription.classList.add('double-padded')
+
+  assignValuesToElements([h3, pDescription, aUrl, pTecnos], [repo.name, repo.description, '👁 Ver en GitHub', repo.language])
+
+  aUrl.href = repo.html_url
+  aUrl.target = '_blank'
+  pUrl.appendChild(aUrl)
+  appendChilds(divDescription, [pDescription, pUrl])
+
+  appendChilds(container, [h3, divDescription, pTecnos])
 
 }
