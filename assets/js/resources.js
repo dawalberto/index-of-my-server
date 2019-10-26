@@ -10,6 +10,12 @@ const myResources = [
   { title: 'angular-redux-todo', service: false, port: null, url: `${server}/angular-redux-todo` },
 ]
 
+const icons = [
+  { technologie: 'html', icon: '<span class="iconify" data-icon="logos:html-5" data-inline="false"></span>' },
+  { technologie: 'css', icon: '<span class="iconify" data-icon="logos:css-3" data-inline="false"></span>' },
+  { technologie: 'javascript', icon: '<span class="iconify" data-icon="logos:javascript" data-inline="false"></span>' },
+]
+
 const totalMyResources = myResources.length
 
 const pages = myResources.filter(item => !item.service)

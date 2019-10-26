@@ -144,14 +144,23 @@ async function printLastRepoPushed() {
 
   divDescription.classList.add('section')
   divDescription.classList.add('double-padded')
+  pTecnos.style.textAlign = 'center'
 
-  assignValuesToElements([h3, pDescription, aUrl, pTecnos], [repo.name, repo.description, '👁 Ver en GitHub', repo.language])
+  let repoDescription = repo.description.slice(0, repo.description.search('- Tecnologias:'))
+  let repoTechnologies = repo.description.slice(repo.description.search('- Tecnologias:'), repo.description.length)
+  repoTechnologies = repo.description.slice(repo.description.search(':') + 1, repo.description.length)
+  repoTechnologies = JSON.parse(repoTechnologies)
+
+  for (let i = 0; i < repoTechnologies.length; i++) {
+    pTecnos.innerHTML += icons[i].technologie === repoTechnologies[i] ? icons[i].icon : ''
+  }
+
+  assignValuesToElements([h3, pDescription, aUrl], [repo.name, repoDescription, '👁 Ver en GitHub'])
 
   aUrl.href = repo.html_url
   aUrl.target = '_blank'
   pUrl.appendChild(aUrl)
   appendChilds(divDescription, [pDescription, pUrl])
-
   appendChilds(container, [h3, divDescription, pTecnos])
 
 }
