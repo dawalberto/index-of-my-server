@@ -79,6 +79,7 @@ function generateTableRecursos() {
     addClassToElements([tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto], 't-align')
     addClassToElements([tdServiceDesktop, tdPaginaDesktop], 'show-in-desktop')
     tdServiceOrPageMobile.classList.add('show-in-mobile')
+    tdTitle.classList.add('title-resources')
 
     tdUrl.appendChild(aUrl)
     appendChilds(tr, [tdTitle, tdServiceDesktop, tdServiceOrPageMobile, tdPaginaDesktop, tdPuerto, tdUrl])
