@@ -141,7 +141,7 @@ async function printLastRepoPushed() {
   let h3 = document.createElement('h3')
   let divDescription = document.createElement('div')
   let aUrl = document.createElement('a')
-  let [pDescription, pUrl, pTecnos] = createElements('p', 3)
+  let [pDescription, pUrl, pTecnos, pDatePushed, pDateCreated] = createElements('p', 5)
 
   divDescription.classList.add('section')
   divDescription.classList.add('double-padded')
@@ -158,12 +158,93 @@ async function printLastRepoPushed() {
       pTecnos.innerHTML += icon[0].icon
   }
 
-  assignValuesToElements([h3, pDescription, aUrl], [repo.name, repoDescription, '👁 Ver en GitHub'])
+  let titleDateCreated = formatDate(repo.created_at)
+  let titleDatePushed = formatDate(repo.pushed_at)
+  titleDateCreated = `📅 Creado el ${titleDateCreated.dia} ${titleDateCreated.date.getDate()} de ${titleDateCreated.mes} de ${titleDateCreated.date.getFullYear()}`
+  titleDatePushed = `📅 Última modificación el ${titleDatePushed.dia} ${titleDatePushed.date.getDate()} de ${titleDatePushed.mes} de ${titleDatePushed.date.getFullYear()}`
+  pDateCreated.title = titleDateCreated
+  pDatePushed.title = titleDatePushed
+  let dateCreated = new Date(repo.created_at)
+  let datePushed = new Date(repo.pushed_at)
+  dateCreated = `🗒 Creado el ${dateCreated.getDate()}/${dateCreated.getMonth() + 1}/${dateCreated.getFullYear()}`
+  datePushed = `🗓 Último push el ${datePushed.getDate()}/${datePushed.getMonth() + 1}/${datePushed.getFullYear()}`
+  assignValuesToElements([h3, pDescription, aUrl, pDateCreated, pDatePushed], [repo.name, repoDescription, '👁 Ver en GitHub', dateCreated, datePushed])
 
   aUrl.href = repo.html_url
   aUrl.target = '_blank'
   pUrl.appendChild(aUrl)
-  appendChilds(divDescription, [pDescription, pUrl])
+  appendChilds(divDescription, [pDescription, pUrl, pDateCreated, pDatePushed])
   appendChilds(container, [h3, divDescription, pTecnos])
+
+}
+
+function formatDate(date) {
+
+  let dia, mes
+
+  switch (new Date(date).getDay()) {
+    case 1:
+      dia = 'Lunes'
+    break
+    case 2:
+      dia = 'Martes'
+    break
+    case 3:
+      dia = 'Miercoles'
+    break
+    case 4:
+      dia = 'Jueves'
+    break
+    case 5:
+      dia = 'Viernes'
+    break
+    case 6:
+      dia = 'Sábado'
+    break
+    case 0:
+      dia = 'Domingo'
+    break
+  }
+
+  switch (new Date(date).getMonth() + 1) {
+    case 1:
+      mes = 'Enero'
+    break
+    case 2:
+      mes = 'Febrero'
+    break
+    case 3:
+      mes = 'Marzo'
+    break
+    case 4:
+      mes = 'Abril'
+    break
+    case 5:
+      mes = 'Mayo'
+    break
+    case 6:
+      mes = 'Junio'
+    break
+    case 7:
+      mes = 'Julio'
+    break
+    case 8:
+      mes = 'Agosto'
+    break
+    case 9:
+      mes = 'Septiembre'
+    break
+    case 10:
+      mes = 'Octubre'
+    break
+    case 11:
+      mes = 'Noviembre'
+    break
+    case 12:
+      mes = 'Diciembre'
+    break
+  }
+
+  return { date: new Date(date), dia, mes }
 
 }
