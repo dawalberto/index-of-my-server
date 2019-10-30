@@ -11,9 +11,9 @@ const myResources = [
 ]
 
 const icons = [
-  { technologie: 'html', icon: '<span class="iconify" data-icon="logos:html-5" data-inline="false"></span>' },
-  { technologie: 'css', icon: '<span class="iconify" data-icon="logos:css-3" data-inline="false"></span>' },
-  { technologie: 'javascript', icon: '<span class="iconify" data-icon="logos:javascript" data-inline="false"></span>' },
+  { technologie: 'html', icon: '<span class="iconify" title="html" data-icon="logos:html-5" data-inline="false"></span>' },
+  { technologie: 'css', icon: '<span class="iconify" title="css" data-icon="logos:css-3" data-inline="false"></span>' },
+  { technologie: 'javascript', icon: '<span class="iconify" title="javascript" data-icon="logos:javascript" data-inline="false"></span>' },
 ]
 
 const totalMyResources = myResources.length

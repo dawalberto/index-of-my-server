@@ -3,7 +3,7 @@ let titles = document.getElementsByClassName('title')
 
 addEventToTitles(titles)
 generateTableRecursos()
-printLastRepoPushed()
+printRepos()
 
 
 function createElements(type, numElements) {
@@ -128,16 +128,51 @@ async function lastRepoGithubPushed() {
   })
 
   return reposOrdered[0]
-  // dates = reposOrdered.map(repo => [repo.pushed_at, repo.name])
-  // console.log(dates)
 
 }
 
-async function printLastRepoPushed() {
+async function getRepoGitHubByName(name) {
 
-  let repo = await lastRepoGithubPushed()
+  let repos = await getReposGithub('dawalberto')
 
-  let container = document.getElementById('lastRepoPushed')
+  return repos.filter(repo => repo.name === name)
+
+}
+
+async function printRepos() {
+
+  let lastRepoPushed = await lastRepoGithubPushed()
+  let containerLastRepoPushed = document.getElementById('lastRepoPushed')
+
+  appendRepo(lastRepoPushed, containerLastRepoPushed)
+  
+  let repoInteresante1 = await getRepoGitHubByName('proyecto-final-frontend') 
+  let repoInteresante2 = await getRepoGitHubByName('proyecto-final-backend')
+  let repoInteresante3 = await getRepoGitHubByName('proyecto_maria')
+  let reposInteresantes = [repoInteresante1, repoInteresante2, repoInteresante3]
+
+  let cardRepoInteresante, containerRepoInteresante
+  for (let i = 0; i < reposInteresantes.length; i++) {
+    containerRepoInteresante = document.createElement('div')
+    cardRepoInteresante = document.createElement('div')
+    cardRepoInteresante.classList.add('card')
+    cardRepoInteresante.classList.add('fluid')
+    containerRepoInteresante.classList.add('col-sm-12')
+    containerRepoInteresante.classList.add('col-md-4')
+    containerRepoInteresante.classList.add('col-lg-4')
+
+    appendRepo(...reposInteresantes[i], cardRepoInteresante)
+    containerRepoInteresante.appendChild(cardRepoInteresante)
+    document.getElementById('reposInteresantes').appendChild(containerRepoInteresante)
+  }
+  
+}
+
+async function appendRepo(repo, container) {
+
+  // let repo = await lastRepoGithubPushed()
+
+  // let container = document.getElementById('lastRepoPushed')
   let h3 = document.createElement('h3')
   let divDescription = document.createElement('div')
   let aUrl = document.createElement('a')
@@ -146,11 +181,11 @@ async function printLastRepoPushed() {
   divDescription.classList.add('section')
   divDescription.classList.add('double-padded')
   pTecnos.style.textAlign = 'center'
-
+console.log(repo)
   let repoDescription = repo.description.slice(0, repo.description.search('- Tecnologias:'))
   let repoTechnologies = repo.description.slice(repo.description.search('- Tecnologias:'), repo.description.length)
   repoTechnologies = repo.description.slice(repo.description.search(':') + 1, repo.description.length)
-  repoTechnologies = JSON.parse(repoTechnologies)
+  try { repoTechnologies = JSON.parse(repoTechnologies) } catch { }
 
   for (let i = 0; i < repoTechnologies.length; i++) {
     let icon = icons.filter(icon => icon.technologie === repoTechnologies[i])
@@ -160,8 +195,9 @@ async function printLastRepoPushed() {
 
   let titleDateCreated = formatDate(repo.created_at)
   let titleDatePushed = formatDate(repo.pushed_at)
-  titleDateCreated = `📅 Creado el ${titleDateCreated.dia} ${titleDateCreated.date.getDate()} de ${titleDateCreated.mes} de ${titleDateCreated.date.getFullYear()}`
-  titleDatePushed = `📅 Última modificación el ${titleDatePushed.dia} ${titleDatePushed.date.getDate()} de ${titleDatePushed.mes} de ${titleDatePushed.date.getFullYear()}`
+  titleDateCreated = `📅 Creado el ${titleDateCreated.dia} ${titleDateCreated.date.getDate()} de ${titleDateCreated.mes} de ${titleDateCreated.date.getFullYear()} a las ${titleDateCreated.date.getHours()}:${titleDateCreated.date.getMinutes()}`
+  titleDatePushed = `📅 Último push el ${titleDatePushed.dia} ${titleDatePushed.date.getDate()} de ${titleDatePushed.mes} de ${titleDatePushed.date.getFullYear()} a las ${titleDatePushed.date.getHours()}:${titleDatePushed.date.getMinutes()}`
+  console.log(repo.pushed_at)
   pDateCreated.title = titleDateCreated
   pDatePushed.title = titleDatePushed
   let dateCreated = new Date(repo.created_at)
@@ -171,6 +207,7 @@ async function printLastRepoPushed() {
   assignValuesToElements([h3, pDescription, aUrl, pDateCreated, pDatePushed], [repo.name, repoDescription, '👁 Ver en GitHub', dateCreated, datePushed])
 
   aUrl.href = repo.html_url
+  aUrl.title = repo.html_url
   aUrl.target = '_blank'
   pUrl.appendChild(aUrl)
   appendChilds(divDescription, [pDescription, pUrl, pDateCreated, pDatePushed])
