@@ -5,6 +5,19 @@ addEventToTitles(titles)
 generateTableRecursos()
 printRepos()
 
+function changeTheme(dark, nord, deflt) {
+
+  let linkCss = document.getElementById('linkCss')
+
+  if (dark > 0)
+    linkCss.href = 'assets/css/minicss/mini-dark.min.css'
+  else if (nord > 0)
+    linkCss.href = 'assets/css/minicss/mini-nord.min.css'
+  else 
+    linkCss.href = 'assets/css/minicss/mini-default.min.css'
+
+}
+
 
 function createElements(type, numElements) {
 
