@@ -170,9 +170,6 @@ async function printRepos() {
 
 async function appendRepo(repo, container) {
 
-  // let repo = await lastRepoGithubPushed()
-
-  // let container = document.getElementById('lastRepoPushed')
   let h3 = document.createElement('h3')
   let divDescription = document.createElement('div')
   let aUrl = document.createElement('a')

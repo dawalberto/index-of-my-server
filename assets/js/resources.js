@@ -14,6 +14,17 @@ const icons = [
   { technologie: 'html', icon: '<span class="iconify" title="html" data-icon="logos:html-5" data-inline="false"></span>' },
   { technologie: 'css', icon: '<span class="iconify" title="css" data-icon="logos:css-3" data-inline="false"></span>' },
   { technologie: 'javascript', icon: '<span class="iconify" title="javascript" data-icon="logos:javascript" data-inline="false"></span>' },
+  { technologie: 'vue', icon: '<span class="iconify" title="vue" data-icon="logos:vue" data-inline="false"></span>' },
+  { technologie: 'vuetify', icon: '<span class="iconify" title="vuetify" data-icon="logos:vuetifyjs" data-inline="false"></span>' },
+  { technologie: 'scss', icon: '<span class="iconify" title="sass" data-icon="logos:sass" data-inline="false"></span>' },
+  { technologie: 'typescript', icon: '<span class="iconify" title="typescript" data-icon="logos:typescript-icon" data-inline="false"></span>' },
+  { technologie: 'angular', icon: '<span class="iconify" title="angular" data-icon="logos:angular-icon" data-inline="false"></span>' },
+  { technologie: 'redux', icon: '<span class="iconify" title="redux" data-icon="logos:redux" data-inline="false"></span>' },
+  { technologie: 'node', icon: '<span class="iconify" title="node" data-icon="logos:nodejs-icon" data-inline="false"></span>' },
+  { technologie: 'express', icon: '<span class="iconify" title="express" data-icon="logos:express" data-inline="false"></span>' },
+  { technologie: 'mysql', icon: '<span class="iconify" title="mysql" data-icon="simple-icons:mysql" data-inline="false"></span>' },
+  { technologie: 'mongodb', icon: '<span class="iconify" title="mongodb" data-icon="logos:mongodb" data-inline="false"></span>' },
+  { technologie: 'bootstrap', icon: '<span class="iconify" title="bootstrap" data-icon="logos:bootstrap" data-inline="false"></span>' }
 ]
 
 const totalMyResources = myResources.length
