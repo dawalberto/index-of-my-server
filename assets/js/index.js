@@ -143,7 +143,11 @@ async function printRepos() {
 
   let lastRepoPushed = await lastRepoGithubPushed()
   let containerLastRepoPushed = document.getElementById('lastRepoPushed')
+  containerLastRepoPushed.classList.add('card')
+  containerLastRepoPushed.classList.add('fluid')
+  containerLastRepoPushed.classList.add('warning')
 
+  document.getElementsByClassName('containerSpinner')[0].style.display = 'none'
   appendRepo(lastRepoPushed, containerLastRepoPushed)
   
   let repoInteresante1 = await getRepoGitHubByName('proyecto-final-frontend') 
@@ -157,12 +161,15 @@ async function printRepos() {
     cardRepoInteresante = document.createElement('div')
     cardRepoInteresante.classList.add('card')
     cardRepoInteresante.classList.add('fluid')
+    // cardRepoInteresante.classList.add('error')
     containerRepoInteresante.classList.add('col-sm-12')
     containerRepoInteresante.classList.add('col-md-4')
     containerRepoInteresante.classList.add('col-lg-4')
 
     appendRepo(...reposInteresantes[i], cardRepoInteresante)
     containerRepoInteresante.appendChild(cardRepoInteresante)
+
+    if (i === 0) { document.getElementsByClassName('containerSpinner')[1].style.display = 'none' }
     document.getElementById('reposInteresantes').appendChild(containerRepoInteresante)
   }
   
@@ -178,7 +185,7 @@ async function appendRepo(repo, container) {
   divDescription.classList.add('section')
   divDescription.classList.add('double-padded')
   pTecnos.style.textAlign = 'center'
-console.log(repo)
+
   let repoDescription = repo.description.slice(0, repo.description.search('- Tecnologias:'))
   let repoTechnologies = repo.description.slice(repo.description.search('- Tecnologias:'), repo.description.length)
   repoTechnologies = repo.description.slice(repo.description.search(':') + 1, repo.description.length)
@@ -194,7 +201,7 @@ console.log(repo)
   let titleDatePushed = formatDate(repo.pushed_at)
   titleDateCreated = `📅 Creado el ${titleDateCreated.dia} ${titleDateCreated.date.getDate()} de ${titleDateCreated.mes} de ${titleDateCreated.date.getFullYear()} a las ${titleDateCreated.date.getHours()}:${titleDateCreated.date.getMinutes()}`
   titleDatePushed = `📅 Último push el ${titleDatePushed.dia} ${titleDatePushed.date.getDate()} de ${titleDatePushed.mes} de ${titleDatePushed.date.getFullYear()} a las ${titleDatePushed.date.getHours()}:${titleDatePushed.date.getMinutes()}`
-  console.log(repo.pushed_at)
+
   pDateCreated.title = titleDateCreated
   pDatePushed.title = titleDatePushed
   let dateCreated = new Date(repo.created_at)

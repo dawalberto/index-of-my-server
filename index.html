@@ -40,6 +40,9 @@
         height: 40px; 
         margin-right: 0.5rem;
     }
+    .containerSpinner {
+        text-align: center;
+    }
 
     @media (min-width: 768px) {
         body {
@@ -75,13 +78,18 @@
             <div class="col-sm-12 col-md-4 col-lg-4">
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
-                <div id="lastRepoPushed" class="card fluid warning">
+                <div class="containerSpinner">
+                    <div class="spinner"></div>
                 </div>
+                <div id="lastRepoPushed"></div>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
             </div>
         </div>
         <h1 class="my-caption">Repositorios interesantes</h1 class="my-caption">
+        <div class="containerSpinner">
+            <div class="spinner"></div>
+        </div>
         <div id="reposInteresantes" class="row"></div>
     </div>
 
