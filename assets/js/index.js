@@ -1,4 +1,3 @@
-let titleRecursos = document.getElementById('titleRecursos')
 let titles = document.getElementsByClassName('title')
 
 addEventToTitles(titles)
@@ -160,7 +159,7 @@ async function printRepos() {
   containerLastRepoPushed.classList.add('fluid')
   containerLastRepoPushed.classList.add('warning')
 
-  document.getElementsByClassName('containerSpinner')[0].style.display = 'none'
+  document.getElementsByClassName('container-spinner')[0].style.display = 'none'
   appendRepo(lastRepoPushed, containerLastRepoPushed)
   
   let repoInteresante1 = await getRepoGitHubByName('proyecto-final-frontend') 
@@ -182,7 +181,7 @@ async function printRepos() {
     appendRepo(...reposInteresantes[i], cardRepoInteresante)
     containerRepoInteresante.appendChild(cardRepoInteresante)
 
-    if (i === 0) { document.getElementsByClassName('containerSpinner')[1].style.display = 'none' }
+    if (i === 0) { document.getElementsByClassName('container-spinner')[1].style.display = 'none' }
     document.getElementById('reposInteresantes').appendChild(containerRepoInteresante)
   }
   

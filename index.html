@@ -26,7 +26,6 @@
         display: block;
     }
     .title-table {
-        /* color: white; */
         font-weight: 400;
     }
     .my-caption {
@@ -40,14 +39,14 @@
         height: 40px; 
         margin-right: 0.5rem;
     }
-    .containerSpinner {
+    .container-spinner {
         text-align: center;
     }
 
     @media (min-width: 768px) {
         body {
             padding: 2rem;
-            max-width: 1920px;
+            max-width: 1000px;
             margin: auto;
         }
         .t-align {
@@ -70,34 +69,39 @@
         <button onclick="changeTheme(1,0,0)" class="inverse">Dark</button>
         <button onclick="changeTheme(0,1,0)" style="background-color: #E5CC93;">Nord</button>
     </div>
-    <br>
-    <h1 id="titleRecursos" class="title">👇 Recursos</h1>
-    <div id="containerTableRecursos"></div>
+    <br/>
 
-    <br>
-    <br>
+    <section class="recursos">
+        <h1 class="title">👇 Recursos</h1>
+        <div id="containerTableRecursos"></div>
+    </section>
 
-    <h1 id="titleRecursos" class="title">👇 GitHub</h1>
-    <div id="containerGithub">
-        <h1 class="my-caption">Último repositorio actualizado!</h1 class="my-caption">
-        <div class="row">
-            <div class="col-sm-12 col-md-4 col-lg-4">
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="containerSpinner">
-                    <div class="spinner"></div>
+    <br/>
+    <br/>
+
+    <section class="github">
+        <h1 class="title">👇 GitHub</h1>
+        <div id="containerGithub">
+            <h2 class="my-caption">Último repositorio actualizado!</h2>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
                 </div>
-                <div id="lastRepoPushed"></div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="container-spinner">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="lastRepoPushed"></div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                </div>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
+            <h2 class="my-caption">Repositorios interesantes</h2>
+            <div class="container-spinner">
+                <div class="spinner"></div>
             </div>
+            <div id="reposInteresantes" class="row"></div>
         </div>
-        <h1 class="my-caption">Repositorios interesantes</h1 class="my-caption">
-        <div class="containerSpinner">
-            <div class="spinner"></div>
-        </div>
-        <div id="reposInteresantes" class="row"></div>
-    </div>
+    </section>
 
     <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
     <script src="./assets/js/resources.js"></script>
