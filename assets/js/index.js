@@ -123,10 +123,13 @@ function showAndHiddenSections(element, title, container) {
 
   if (element.textContent === `👇 ${title}`) {
     element.textContent = `👉${title}`
-    container.style.display = 'none'
+    animateCSS(container, 'bounceOutUp', () => {
+      container.style.display = 'none'
+    })
   } else {
     element.textContent = `👇 ${title}`
-    container.style.display = 'initial'
+    container.style.display = 'block'
+    animateCSS(container, 'bounceInDown')
   }
 
 }
@@ -181,8 +184,10 @@ async function printRepos() {
     appendRepo(...reposInteresantes[i], cardRepoInteresante)
     containerRepoInteresante.appendChild(cardRepoInteresante)
 
-    if (i === 0) { document.getElementsByClassName('container-spinner')[1].style.display = 'none' }
-    document.getElementById('reposInteresantes').appendChild(containerRepoInteresante)
+    if (i === 0) { document.getElementsByClassName('container-spinner')[1].style.display = 'none' } {
+      document.getElementById('reposInteresantes').appendChild(containerRepoInteresante)
+      animateCSS(containerRepoInteresante, 'flipInX')
+    }
   }
   
 }
@@ -228,7 +233,7 @@ async function appendRepo(repo, container) {
   pUrl.appendChild(aUrl)
   appendChilds(divDescription, [pDescription, pUrl, pDateCreated, pDatePushed])
   appendChilds(container, [h3, divDescription, pTecnos])
-
+  animateCSS(container, 'flipInX')
 }
 
 function formatDate(date) {
@@ -300,4 +305,19 @@ function formatDate(date) {
 
   return { date: new Date(date), dia, mes }
 
+}
+document.getElementsByClassName('recursos')[0].firstElementChild
+// function animate.css
+function animateCSS(element, animationName, callback) {
+
+  element.classList.add('animated', animationName)
+
+  function handleAnimationEnd() {
+      element.classList.remove('animated', animationName)
+      element.removeEventListener('animationend', handleAnimationEnd)
+
+      if (typeof callback === 'function') callback()
+  }
+
+  element.addEventListener('animationend', handleAnimationEnd)
 }
