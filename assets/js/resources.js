@@ -25,7 +25,9 @@ const icons = [
   { technologie: 'mysql', icon: '<span class="iconify" title="mysql" data-icon="simple-icons:mysql" data-inline="false"></span>' },
   { technologie: 'mongodb', icon: '<span class="iconify" title="mongodb" data-icon="logos:mongodb" data-inline="false"></span>' },
   { technologie: 'bootstrap', icon: '<span class="iconify" title="bootstrap" data-icon="logos:bootstrap" data-inline="false"></span>' },
-  { technologie: 'python', icon: '<span class="iconify" title="python" data-icon="logos:python" data-inline="false"></span>' }
+  { technologie: 'python', icon: '<span class="iconify" title="python" data-icon="logos:python" data-inline="false"></span>' },
+  { technologie: 'sass', icon: '<span class="iconify" title="sass" data-icon="logos:sass" data-inline="false"></span>' },
+  { technologie: 'npm', icon: '<span class="iconify" title="npm" data-icon="logos:npm" data-inline="false"></span>' }
 ]
 
 const totalMyResources = myResources.length
