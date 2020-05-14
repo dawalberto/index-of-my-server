@@ -27,7 +27,10 @@ const icons = [
   { technologie: 'bootstrap', icon: '<span class="iconify" title="bootstrap" data-icon="logos:bootstrap" data-inline="false"></span>' },
   { technologie: 'python', icon: '<span class="iconify" title="python" data-icon="logos:python" data-inline="false"></span>' },
   { technologie: 'sass', icon: '<span class="iconify" title="sass" data-icon="logos:sass" data-inline="false"></span>' },
-  { technologie: 'npm', icon: '<span class="iconify" title="npm" data-icon="logos:npm" data-inline="false"></span>' }
+  { technologie: 'npm', icon: '<span class="iconify" title="npm" data-icon="logos:npm" data-inline="false"></span>' },
+  { technologie: 'java', icon: '<span class="iconify" title="java" data-icon="logos:java" data-inline="false"></span>' },
+  { technologie: 'spring', icon: '<span class="iconify" title="spring" data-icon="logos:spring" data-inline="false"></span>' },
+  { technologie: 'hibernate', icon: '<span class="iconify" title="hibernate" data-icon="logos:hibernate" data-inline="false"></span>' }
 ]
 
 const totalMyResources = myResources.length
